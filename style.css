@@ -25,8 +25,10 @@ h1 {
     border-radius: 10px;
 } 
 
-#score {
+#scoreBoard {
+    font-family: 'Courier New', Courier, monospace;
     font-size: 50px;
+    font-weight: bolder;
 }
 
 button {

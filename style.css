@@ -28,6 +28,26 @@ h1 {
 }
 
 #score {
-    font-size: 70px;
-   
+    font-size: 50px;
+}
+
+button {
+    font-size: 25px;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    border: 5px solid red;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color:aqua;
+    margin: 20px;
+
+}
+
+button:hover {
+    background-color: rgb(165, 226, 245);
+}
+
+button:active {
+    background-color: whitesmoke;
 }

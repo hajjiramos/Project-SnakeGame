@@ -23,9 +23,7 @@ h1 {
 #gameBoard {
     border: 10px solid maroon;
     border-radius: 10px;
-    width: 500px;
-    height: 500px;
-}
+} 
 
 #score {
     font-size: 50px;

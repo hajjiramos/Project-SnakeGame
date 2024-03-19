@@ -1,14 +1,10 @@
 const gameBoard = document.querySelector('#gameBoard');
 const canvasContext = gameBoard.getContext('2d');
 const scoreDisplay = document.querySelector('#scoreDisplay');
-const btnPlayAgain = document.querySelector('#btnPlayAgain');
-const btnSpeed = document.querySelector('#btnSpeed');
+const btnPlay = document.querySelector('#btnPlay')
+const btnReset = document.querySelector('#btnReset');
 const gameWidth = gameBoard.width;
 const gameHeight = gameBoard.height;
-const boardBackground = "white";
-const snakeColor = "lightgreen";
-const snakeBorder = "black";
-const foodColor = "red";
 const unitSize = 25;
 let running = false;
 let xVelocity = unitSize;
@@ -23,13 +19,13 @@ let snake = [
     {xCoordinate:unitSize, yCoordinate:0},
     {xCoordinate:0, yCoordinate:0},
 ]
-
+let speedDelay = 200;
 
 //-- Keyboard arrow keys function -- //
 window.addEventListener('keydown', changeDirection);
-btnPlayAgain.addEventListener('click', resetGame);
+btnPlay.addEventListener('click', gameStart)
+btnReset.addEventListener('click', resetGame);
 
-gameStart();
 
 
 function gameStart() {
@@ -49,7 +45,7 @@ function nextTick(){
             drawSnake();
             checkGameOver();
             nextTick();    
-        }, 200);
+        }, speedDelay);
     }
     else {
         displayGameOver();
@@ -58,7 +54,7 @@ function nextTick(){
 
 
 function clearBoard(){
-    canvasContext.fillStyle = boardBackground;
+    canvasContext.fillStyle = "whitesmoke";
     canvasContext.fillRect(0, 0, gameWidth, gameHeight)
 }
 
@@ -74,7 +70,7 @@ function createFood(){
 
 
 function drawFood(){
-    canvasContext.fillStyle = foodColor;
+    canvasContext.fillStyle = "red";
     canvasContext.fillRect(foodXCoordinate, foodYCoordinate, unitSize, unitSize);
 }
 
@@ -89,6 +85,7 @@ function moveSnake(){
     //check if food is eaten
     if (snake[0].xCoordinate == foodXCoordinate && snake[0].yCoordinate == foodYCoordinate){
         score+=1;
+        speedDelay-=5;
         scoreDisplay.textContent = score;
         createFood();
     }  
@@ -99,8 +96,8 @@ function moveSnake(){
 
 
 function drawSnake(){
-    canvasContext.fillStyle = snakeColor;
-    canvasContext.strokeStyle = snakeBorder;
+    canvasContext.fillStyle = "lightblue";
+    canvasContext.strokeStyle = "black";
     snake.forEach(snakeMove => {
         canvasContext.fillRect(snakeMove.xCoordinate, snakeMove.yCoordinate, unitSize, unitSize)
         canvasContext.strokeRect(snakeMove.xCoordinate, snakeMove.yCoordinate, unitSize, unitSize)
@@ -179,16 +176,18 @@ function checkGameOver(){
 
 
 function displayGameOver(){
-    canvasContext.font = "50px MV Boli";
+    canvasContext.font = "50px DundalkHandDrawn";
     canvasContext.fillStyle = "black";
     canvasContext.textAlign = "center";
     canvasContext.fillText("GAME OVER!", gameWidth/2, gameHeight/2);
     running = false;
+    document.querySelector('#btnPlay').disabled=true;
 }
 
 
 function resetGame(){
     score = 0;
+    speedDelay = 200;
     xVelocity = unitSize;
     yVelocity = 0;
     snake = [

@@ -5,20 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer ></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <h1>Snake Game</h1>
-    <p>"Speed increases every catch</p>
+    <p>"Speed increases every catch"</p>
+    <div id="player">Player: <span class="name"></span></div>
 
     <div id="container">
-        <canvas id="gameBoard" width="500" height="500"></canvas>
         <div id="scoreBoard">Score: 
             <span id="scoreDisplay" style="color: blue"></span>
+        </div>     
+
+        <div id="timer">Time:
+            <span id="timerDisplay" style="color: blue"></span>
         </div>
-        <button id="btnPlay">Play Game</button>
-        <button id="btnReset">Reset</button>
     </div>
+    
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <img id="snake" src="./snake_cartoon.avif" alt=""/>
+    <div>
+        <button id="btnPlay">PLAY</button>
+        <button id="btnTryAgain">TRY AGAIN</button>
+        <button id="btnExit" onclick="window.location.reload()">EXIT</button>
+    </div>
+    
+   
     
 </body>
 </html>
